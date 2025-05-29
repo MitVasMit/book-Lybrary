@@ -1,12 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
-  content: [
-    "./index.php",
-    "./includes/**/*.{php,html}",
-    "./**/*.php"
-  ],
+  darkMode: "class",
+  content: ["./index.php", "./includes/**/*.{php,html}", "./**/*.php"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [],
-}
+};
