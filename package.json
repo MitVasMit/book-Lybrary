@@ -4,7 +4,9 @@
   "description": "A simple online library application that allows users to discover their favorite books, read them, leave comments and reviews, and save books for later.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css",
+    "dev": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch"
   },
   "keywords": [],
   "author": "",
