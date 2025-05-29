@@ -1,0 +1,17 @@
+{
+  "name": "book-library",
+  "version": "1.0.0",
+  "description": "A simple online library application that allows users to discover their favorite books, read them, leave comments and reviews, and save books for later.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  }
+}
