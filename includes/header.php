@@ -14,7 +14,7 @@
 </head>
 
 <body class="bg-blue-100 text-gray-900 dark:bg-gray-900 dark:text-white">
-    <header class="shadow">
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/70 backdrop-blur-md shadow">
         <div class="container mx-auto px-4 py-4 flex items-center justify-between">
 
             <div class="flex items-center gap-2 w-1/3">
@@ -30,7 +30,7 @@
 
             <nav class="w-1/3 text-right space-x-4">
                 <a href="/login.php" class="text-gray-600 hover:text-blue-600 font-medium">Login</a>
-                <a href="/register.php" class="text-gray-600 hover:text-blue-600 font-medium">Register</a>
+                <a href="../public/register.php" class="text-gray-600 hover:text-blue-600 font-medium">Register</a>
                 <button id="darkToggle" class="ml-2 text-gray-600 dark:text-gray-300 hover:text-yellow-500" title="Toggle Dark Mode">
                     🌙
                 </button>

@@ -4,6 +4,8 @@
 <script src="../assets/js/bestsellers.js" defer></script>
 <script src="../assets/js/books.js"></script>
 
+
+
 </body>
 
 </html>
