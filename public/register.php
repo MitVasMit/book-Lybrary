@@ -1,14 +1,9 @@
 <?php
 include('../includes/header.php');
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-$errors = $_SESSION['errors'] ?? [];
-$old = $_SESSION['old'] ?? [];
-
-
-
-// echo '<pre>';
-// print_r($_SESSION['errors'])
 ?>
 
 <div class="min-h-screen flex items-center justify-center px-4 bg-gray-50 dark:bg-gray-900">
@@ -26,7 +21,7 @@ $old = $_SESSION['old'] ?? [];
                     placeholder="Your full name"
                     value="<?= htmlspecialchars($_SESSION['old']['name'] ?? '') ?>"
                     class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <small class="font-bold underline decoration-red-500"><?= !empty($_SESSION['errors']['username']) ? $_SESSION['errors']['username'] : ''; ?></small>
+                <small class="block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['username']) ? $_SESSION['errors']['username'] : ''; ?></small>
             </div>
 
             <div>
@@ -38,7 +33,7 @@ $old = $_SESSION['old'] ?? [];
                     placeholder="you@example.com"
                     value="<?= htmlspecialchars($_SESSION['old']['email'] ?? '') ?>"
                     class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <small class="font-bold underline decoration-red-500"><?= !empty($_SESSION['errors']['email']) ? $_SESSION['errors']['email'] : ''; ?></small>
+                <small class="block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['email']) ? $_SESSION['errors']['email'] : ''; ?></small>
 
             </div>
 
@@ -50,7 +45,7 @@ $old = $_SESSION['old'] ?? [];
                     name="password"
                     placeholder="Enter password"
                     class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <small class="font-bold underline decoration-red-500"><?= !empty($_SESSION['errors']['password']) ? $_SESSION['errors']['password'] : ''; ?></small>
+                <small class="block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['password']) ? $_SESSION['errors']['password'] : ''; ?></small>
             </div>
 
             <div>
@@ -61,7 +56,7 @@ $old = $_SESSION['old'] ?? [];
                     name="confirm_password"
                     placeholder="Repeat password"
                     class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <small class="font-bold underline decoration-red-500"><?= !empty($_SESSION['errors']['password_does_not_match']) ? $_SESSION['errors']['password_does_not_match'] : ''; ?></small>
+                <small class="block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['password_does_not_match']) ? $_SESSION['errors']['password_does_not_match'] : ''; ?></small>
 
             </div>
 
