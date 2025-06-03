@@ -19,20 +19,26 @@ class User extends DB
         ]);
     }
 
-    public function getUserId($username)
-    {
-        $sql = "SELECT id FROM users WHERE name = :username";
-        $stmt = $this->instance->prepare($sql);
-        $stmt->execute(['username' => $username]);
-        $result = $stmt->fetch();
-        return $result ? $result['id'] : null;
-    }
-
     public function isEmailTaken($email)
     {
         $sql = "SELECT 1 FROM users WHERE email = :email LIMIT 1";
         $stmt = $this->instance->prepare($sql);
         $stmt->execute(['email' => $email]);
         return (bool) $stmt->fetch();
+    }
+
+    public function authenticate($email, $password)
+    {
+        $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+        $stmt = $this->instance->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($password, $user['password'])) {
+            unset($user['password']);
+            return $user;
+        }
+
+        return false;
     }
 }

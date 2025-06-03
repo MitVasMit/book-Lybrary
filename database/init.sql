@@ -16,6 +16,6 @@ VALUES (
   'Admin',
   'admin@example.com',
   -- Passwort: admin123 (hashed with bcrypt)
-  '$2y$10$E4ulqIXPr0Tdb.3hAcvSt.F9MvIsc5rCMFSEqazZMGk1K/IBkT8B6',
+  '$2y$10$1UzXVfrOEdsjFql67/Mp2Oahd9YRY1O1yiEdMzoeAIuNyLcAfsr3u',
   'admin'
 );
