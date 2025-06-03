@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "philosophy",
   ];
 
+  const loader = document.getElementById("book-list-loader");
   const bookList = document.getElementById("book-list");
+  loader.classList.remove("hidden");
   const pagination = document.getElementById("pagination");
 
   const booksPerPage = 20;
@@ -25,11 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(`https://openlibrary.org/subjects/${randomCategory}.json?limit=100`)
     .then((res) => res.json())
     .then((data) => {
+      loader.classList.add("hidden");
       books = data.works || [];
       renderPage(currentPage);
       setupPagination();
     })
     .catch((err) => {
+      loader.classList.add("hidden");
       bookList.innerHTML = `<p class="text-red-600">Error loading Books.</p>`;
       console.error(err);
     });
@@ -53,12 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const item = document.createElement("div");
       item.className =
-        "bg-white dark:bg-gray-700 rounded shadow p-8 mx-auto flex flex-col items-center max-w-xs";
+        "bg-white dark:bg-gray-700 rounded-lg shadow-md p-2 mx-auto flex flex-col items-center w-full max-w-[160px] min-h-[320px] hover:scale-105 transition duration-300 ease-in-out";
 
       if (cover) {
         item.innerHTML = `
       <img src="${cover}" alt="${book.title}" 
-           class="w-full max-w-[150px] max-h-[200px] object-contain mb-4 rounded" />
+     class="w-[120px] h-[180px] object-contain mb-4 p-2 bg-white rounded shadow" />
+
       <h3 class="text-md font-semibold text-gray-900 dark:text-white text-center">${
         book.title
       }</h3>
@@ -117,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     pagination.appendChild(prevBtn);
 
-    const pageInfo = document.createElement("span");
+    const pageInfo = document.createElement("small");
     pageInfo.textContent = ` Page ${currentPage} from ${totalPages} `;
     pageInfo.className = "text-xs text-gray-500 dark:text-gray-300 mx-2";
     pagination.appendChild(pageInfo);
