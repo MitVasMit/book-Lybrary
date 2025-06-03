@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/../includes/autoload.php';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
@@ -46,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors['failed_register'] = "Failed to save user. Please try again.";
         }
     }
-
+    // return with errors
     $_SESSION['errors'] = $errors;
     $_SESSION['old'] = ['name' => $name, 'email' => $email];
 
