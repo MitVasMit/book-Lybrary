@@ -1,10 +1,12 @@
-<?php include('../includes/header.php');
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('Location: ../public/index.php');
-    exit;
-}
-?>
+<?php
+require_once '../includes/auth.php';
+requireAdmin();
+include('../includes/header.php');
 
+
+
+
+?>
 
 <div class="text-center">this is admin dashboard</div>
 
