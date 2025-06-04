@@ -28,6 +28,24 @@ if (toggle) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollBtn = document.getElementById("scrollToTopBtn");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      scrollBtn.classList.remove("opacity-0", "pointer-events-none");
+      scrollBtn.classList.add("opacity-100", "pointer-events-auto");
+    } else {
+      scrollBtn.classList.add("opacity-0", "pointer-events-none");
+      scrollBtn.classList.remove("opacity-100", "pointer-events-auto");
+    }
+  });
+
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
 function dismissFlash() {
   const flash = document.getElementById("flash-message");
   if (flash) {
