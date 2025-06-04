@@ -1,5 +1,15 @@
 <?php include('../includes/header.php'); ?>
 
+<?php if (!empty($_SESSION['errors']['auth'])): ?>
+    <div id="flash-message" class="relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center max-w-xl mx-auto my-6 transition-opacity duration-500 ease-in-out">
+        <span><?= $_SESSION['errors']['auth'];
+                unset($_SESSION['errors']['auth']); ?></span>
+        <button class="absolute top-0 right-0 px-3 py-2 text-red-700 hover:text-red-900" onclick="dismissFlash()">
+            &times;
+        </button>
+    </div>
+<?php endif; ?>
+
 <div class="max-w-6xl mx-auto py-8">
     <h2 class="text-2xl font-bold mb-4 text-center">Our Bestsellers:</h2>
 
