@@ -19,3 +19,10 @@ VALUES (
   '$2y$10$1UzXVfrOEdsjFql67/Mp2Oahd9YRY1O1yiEdMzoeAIuNyLcAfsr3u',
   'admin'
 );
+
+CREATE TABLE password_resets (
+  email VARCHAR(255) NOT NULL,
+  token VARCHAR(255) NOT NULL,
+  expires_at DATETIME NOT NULL,
+  PRIMARY KEY (email)
+);
