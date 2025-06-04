@@ -41,4 +41,49 @@ class User extends DB
 
         return false;
     }
+
+    public function emailExists(string $email): bool
+    {
+        $sql = "SELECT 1 FROM users WHERE email = :email LIMIT 1";
+        $stmt = $this->instance->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        return (bool) $stmt->fetch();
+    }
+
+    public function storePasswordResetToken(string $email, string $token, string $expiresAt): bool
+    {
+        $sql = 'INSERT INTO password_resets (email, token, expires_at) VALUES (:email, :token, :expires_at)
+                ON DUPLICATE KEY UPDATE token = VALUES(token), expires_at = VALUES(expires_at)';
+        $stmt = $this->instance->prepare($sql);
+        return $stmt->execute([
+            'email' => $email,
+            'token' => $token,
+            'expires_at' => $expiresAt,
+        ]);
+    }
+
+    public function getEmailByValidToken(string $token)
+    {
+        $sql = "SELECT email FROM password_resets WHERE token = :token AND expires_at > NOW()";
+        $stmt = $this->instance->prepare($sql);
+        $stmt->execute(['token' => $token]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updatePasswordByEmail(string $email, string $hashedPassword): bool
+    {
+        $sql = "UPDATE users SET password = :password WHERE email = :email";
+        $stmt = $this->instance->prepare($sql);
+        return $stmt->execute([
+            'password' => $hashedPassword,
+            'email' => $email,
+        ]);
+    }
+
+    public function deleteResetTokenByEmail(string $email): bool
+    {
+        $sql = "DELETE FROM password_resets WHERE email = :email";
+        $stmt = $this->instance->prepare($sql);
+        return $stmt->execute(['email' => $email]);
+    }
 }

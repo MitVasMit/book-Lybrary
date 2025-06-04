@@ -1,3 +1,4 @@
-/config/*
+/vendor/
 *.log
 *.env
+/config/*

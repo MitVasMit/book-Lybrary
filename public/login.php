@@ -27,7 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     placeholder="you@example.com"
                     value="<?= htmlspecialchars($_SESSION['old']['email'] ?? '') ?>"
                     class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <small class="block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['email']) ? $_SESSION['errors']['email'] : ''; ?></small>
+                <small class="mt-2 block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['email']) ? $_SESSION['errors']['email'] : ''; ?></small>
             </div>
 
             <div>
@@ -38,7 +38,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     name="password"
                     placeholder="Enter password"
                     class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <small class="block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['password']) ? $_SESSION['errors']['password'] : ''; ?></small>
+                <small class="mt-2 block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['password']) ? $_SESSION['errors']['password'] : ''; ?></small>
             </div>
 
             <button
@@ -46,6 +46,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 class="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white py-3 rounded-md font-semibold text-lg">
                 Log In
             </button>
+            <a href="forgot-password.php" class="block text-right text-blue-600 hover:underline">Forgot your password?</a>
         </form>
 
         <p class="text-center mt-6 text-gray-600 dark:text-gray-300 text-sm">
