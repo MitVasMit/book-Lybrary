@@ -1,4 +1,8 @@
-<?php include('../includes/header.php'); ?>
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+include('../includes/header.php'); ?>
 
 <?php if (!empty($_SESSION['errors']['auth'])): ?>
     <div id="flash-message" class="relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center max-w-xl mx-auto my-6 transition-opacity duration-500 ease-in-out">
@@ -27,7 +31,13 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-
+<div class="sticky top-[92px] max-w z-20 bg-white/80 dark:bg-gray-900/70 backdrop-blur-md shadow px-4 py-2 dark:border-gray-700">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search title..."
+        class="w-full max-w-xl mx-auto mb-6 block p-2 border border-gray-300 rounded-md focus:outline-none text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 placeholder-gray-400 dark:placeholder-gray-500" />
+</div>
 <section class="py-20 bg-gray-100 dark:bg-gray-800">
     <div class="container mx-auto px-4">
         <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Our Books:</h2>

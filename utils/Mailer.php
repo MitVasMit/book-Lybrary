@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+
 class Mailer
 {
     private $mail;
@@ -13,14 +14,17 @@ class Mailer
         $this->mail = new PHPMailer(true);
 
         $this->mail->isSMTP();
-        $this->mail->Host = 'smtp.gmail.com';
+        $this->mail->Host = $_ENV['SMTP_HOST'] ?? 'smtp.gmail.com';
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = 'vaskomitevski949@gmail.com';
-        $this->mail->Password = 'tvfhlywwxwysuswg';
+        $this->mail->Username = $_ENV['SMTP_USERNAME'] ?? '';
+        $this->mail->Password = $_ENV['SMTP_PASSWORD'] ?? '';
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mail->Port = 587;
+        $this->mail->Port = $_ENV['SMTP_PORT'] ?? 587;
 
-        $this->mail->setFrom('yourgmail@gmail.com', 'YourApp Support');
+        $this->mail->setFrom(
+            $_ENV['SMTP_FROM_EMAIL'] ?? 'default@example.com',
+            $_ENV['SMTP_FROM_NAME'] ?? 'YourApp Support'
+        );
     }
 
     public function send($to, $subject, $body)
@@ -36,7 +40,7 @@ class Mailer
             $this->mail->send();
             return true;
         } catch (Exception $e) {
-            error_log("Mailer Error: " . $this->mail->ErrorInfo);
+            error_log("Mailer Error: " . $this->mail->ErrorInfo . PHP_EOL, 3, __DIR__ . '/mailer_error.log');
             return false;
         }
     }

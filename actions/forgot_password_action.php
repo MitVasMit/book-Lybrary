@@ -1,5 +1,9 @@
 <?php
-
+require_once __DIR__ . '/../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+error_log('SMTP_USERNAME=' . getenv('SMTP_USERNAME'));
+error_log('SMTP_PASSWORD=' . getenv('SMTP_PASSWORD'));
 require_once __DIR__ . '/../includes/autoload.php';
 require_once __DIR__ . '/../utils/Mailer.php';
 
@@ -8,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../public/forgot-password.php');
+    header('Location: ../public/forgot_password.php');
     exit;
 }
 
@@ -16,20 +20,20 @@ $email = trim($_POST['email'] ?? '');
 
 if (empty($email)) {
     $_SESSION['errors']['email'] = 'Email is required.';
-    header('Location: ../public/forgot-password.php');
+    header('Location: ../public/forgot_password.php');
     exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['errors']['email'] = 'Invalid email address.';
-    header('Location: ../public/forgot-password.php');
+    header('Location: ../public/forgot_password.php');
     exit;
 }
 
 if (!$userModel->emailExists($email)) {
     // to prevent email enumeration, show success message even if no user found
     $_SESSION['success'] = 'If this email exists in our system, a reset link has been sent.';
-    header('Location: ../public/forgot-password.php');
+    header('Location: ../public/forgot_password.php');
     exit;
 }
 
@@ -53,7 +57,8 @@ $body = "
 ";
 
 $mailer->send($email, $subject, $body);
+// error_log("Attempting to send email to $to");
 
 $_SESSION['success'] = 'If this email exists in our system, a reset link has been sent.';
-header('Location: ../public/forgot-password.php');
+header('Location: ../public/forgot_password.php');
 exit;
