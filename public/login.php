@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
         <h2 class="text-3xl font-extrabold text-center text-blue-600 mb-8">Log In to Your Account</h2>
-        <small class="mb-2 block text-center text-base block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['login']) ? $_SESSION['errors']['login'] : ''; ?></small>
+        <small class="mb-2 block text-center text-base font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['login']) ? $_SESSION['errors']['login'] : ''; ?></small>
 
         <form action="../actions/login_action.php" method="POST" class="space-y-6">
             <div>
@@ -46,7 +46,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 class="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white py-3 rounded-md font-semibold text-lg">
                 Log In
             </button>
-            <a href="forgot-password.php" class="block text-right text-blue-600 hover:underline">Forgot your password?</a>
+            <a href="forgot_password.php" class="block text-right text-blue-600 hover:underline">Forgot your password?</a>
         </form>
 
         <p class="text-center mt-6 text-gray-600 dark:text-gray-300 text-sm">
@@ -60,4 +60,4 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 <?php include('../includes/footer.php');
-unset($_SESSION['success']);
+unset($_SESSION['success'], $_SESSION['errors']);

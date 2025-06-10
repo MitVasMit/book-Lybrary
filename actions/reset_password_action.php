@@ -55,6 +55,6 @@ if (!$userModel->updatePasswordByEmail($email, $hashedPassword)) {
 // delete the used token from db
 $userModel->deleteResetTokenByEmail($email);
 
-$_SESSION['success'] = 'Your password has been reset successfully. Please log in.';
+$_SESSION['success'] = 'Your password has been reset successfully. You can now login with your new password.';
 header('Location: ../public/login.php');
 exit;
