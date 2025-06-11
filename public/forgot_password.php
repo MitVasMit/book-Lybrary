@@ -18,6 +18,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <form action="../actions/forgot_password_action.php" method="POST" class="space-y-6">
             <div>
+
+                <div id="spinner" class="hidden flex justify-center">
+                    <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+
                 <label for="email" class="block mb-2 font-medium text-gray-700 dark:text-gray-200">Your Email</label>
                 <input
                     type="email"
@@ -28,14 +33,14 @@ if (session_status() === PHP_SESSION_NONE) {
                 <small class="mt-2 block font-semibold text-red-700 dark:text-red-300"><?= !empty($_SESSION['errors']['email']) ? $_SESSION['errors']['email'] : ''; ?></small>
             </div>
 
-
-
             <button
                 type="submit"
+                id="submitBtn"
                 class="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white py-3 rounded-md font-semibold text-lg">
                 Send Reset Link
             </button>
         </form>
+
 
         <p class="text-center mt-6 text-gray-600 dark:text-gray-300 text-sm">
             Remembered your password?

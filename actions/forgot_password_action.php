@@ -2,8 +2,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
-error_log('SMTP_USERNAME=' . getenv('SMTP_USERNAME'));
-error_log('SMTP_PASSWORD=' . getenv('SMTP_PASSWORD'));
+
 require_once __DIR__ . '/../includes/autoload.php';
 require_once __DIR__ . '/../utils/Mailer.php';
 
@@ -57,7 +56,6 @@ $body = "
 ";
 
 $mailer->send($email, $subject, $body);
-// error_log("Attempting to send email to $to");
 
 $_SESSION['success'] = 'If this email exists in our system, a reset link has been sent.';
 header('Location: ../public/forgot_password.php');
