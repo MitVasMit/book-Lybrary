@@ -2,12 +2,8 @@
 require_once '../includes/auth.php';
 requireAdmin();
 include('../includes/header.php');
-
-
-
-
+include_once '../includes/admin/admin_nav.php';
 ?>
 
-<div class="text-center">this is admin dashboard</div>
 
 <?php include('../includes/footer.php'); ?>
