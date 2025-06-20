@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //take random category
   const randomCategory =
     categories[Math.floor(Math.random() * categories.length)];
-  console.log("Kategorie:", randomCategory);
 
   fetch(`https://openlibrary.org/subjects/${randomCategory}.json?limit=100`)
     .then((res) => res.json())

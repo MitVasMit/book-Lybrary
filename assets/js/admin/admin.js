@@ -4,19 +4,40 @@ document.addEventListener("DOMContentLoaded", function () {
   const sidebarTextItems = document.querySelectorAll(".sidebar-text");
   const sidebarTitle = document.getElementById("sidebarTitle");
 
-  toggleBtn.addEventListener("click", function () {
-    const collapsed = sidebar.classList.contains("w-64");
+  let isExpanded = true;
 
-    if (collapsed) {
-      sidebar.classList.remove("w-64");
-      sidebar.classList.add("w-20");
-      sidebarTitle.style.display = "none";
-      sidebarTextItems.forEach((el) => (el.style.display = "none"));
-    } else {
-      sidebar.classList.add("w-64");
-      sidebar.classList.remove("w-20");
+  function updateSidebar() {
+    if (isExpanded) {
+      sidebar.style.width = "16rem"; // expanded
       sidebarTitle.style.display = "block";
-      sidebarTextItems.forEach((el) => (el.style.display = "inline"));
+
+      sidebarTextItems.forEach((el) => {
+        el.style.opacity = "1";
+        el.style.visibility = "visible";
+        el.style.transition = "opacity 0.3s ease";
+      });
+
+      toggleBtn.innerHTML = "&#8592;";
+      toggleBtn.style.transform = "rotate(0deg)";
+    } else {
+      sidebar.style.width = "5rem"; // collapsed
+      sidebarTitle.style.display = "none";
+
+      sidebarTextItems.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.visibility = "hidden";
+        el.style.transition = "opacity 0.3s ease";
+      });
+
+      // toggleBtn.innerHTML = "&#8594;";
+      toggleBtn.style.transform = "rotate(180deg)";
+      toggleBtn.style.transition = ".5s";
     }
+  }
+  toggleBtn.addEventListener("click", () => {
+    isExpanded = !isExpanded;
+    updateSidebar();
   });
+
+  updateSidebar();
 });
