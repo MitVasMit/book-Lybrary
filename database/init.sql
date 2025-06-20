@@ -20,18 +20,87 @@ VALUES (
   'admin'
 );
 
-CREATE TABLE password_resets (
+-- PASSWORD RESETS table
+CREATE TABLE IF NOT EXISTS password_resets (
   email VARCHAR(255) NOT NULL,
   token VARCHAR(255) NOT NULL,
   expires_at DATETIME NOT NULL,
   PRIMARY KEY (email)
 );
 
-CREATE TABLE books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    description TEXT,
-    published_year INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- CATEGORIES table
+CREATE TABLE IF NOT EXISTS categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  slug VARCHAR(50) NOT NULL UNIQUE,
+  name VARCHAR(100) NOT NULL
 );
+
+-- Insert initial categories
+INSERT INTO categories (slug, name) VALUES
+  ('computer_programming', 'Computer Programming'),
+  ('science', 'Science'),
+  ('history', 'History'),
+  ('fantasy', 'Fantasy'),
+  ('romance', 'Romance'),
+  ('biography', 'Biography'),
+  ('art', 'Art'),
+  ('philosophy', 'Philosophy');
+
+-- BOOKS table
+CREATE TABLE IF NOT EXISTS books (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  description TEXT,
+  published_year YEAR,
+  pages INT UNSIGNED,
+  rating DECIMAL(2,1) DEFAULT 0,
+  cover_image VARCHAR(255),
+  category_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_category FOREIGN KEY (category_id)
+    REFERENCES categories(id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+);
+
+-- PRIVATE COMMENTS table
+CREATE TABLE IF NOT EXISTS private_comments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  book_id INT NOT NULL,
+  comment TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_comment_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_comment_book FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- REVIEWS table
+CREATE TABLE IF NOT EXISTS reviews (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  book_id INT NOT NULL,
+  rating TINYINT UNSIGNED NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  comment TEXT,
+  approved BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  CONSTRAINT fk_review_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_review_book FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- populating 10 books for start
+INSERT INTO books (title, author, description, published_year, pages, rating, cover_image, category_id)
+VALUES
+('Clean Code', 'Robert C. Martin', 'A Handbook of Agile Software Craftsmanship', 2008, 464, 4.7, 'clean_code.jpg', 1),
+('A Brief History of Time', 'Stephen Hawking', 'A landmark volume in science writing.', 1988, 212, 4.6, 'brief_history.jpg', 2),
+('Sapiens', 'Yuval Noah Harari', 'A brief history of humankind.', 2011, 443, 4.5, 'sapiens.jpg', 3),
+('The Hobbit', 'J.R.R. Tolkien', 'A fantasy adventure that begins the Lord of the Rings.', 1937, 310, 4.8, 'hobbit.jpg', 4),
+('Pride and Prejudice', 'Jane Austen', 'A romantic classic about manners and marriage.', 1813, 279, 4.4, 'pride_prejudice.jpg', 5),
+('Steve Jobs', 'Walter Isaacson', 'Biography of Apple co-founder Steve Jobs.', 2011, 656, 4.6, 'steve_jobs.jpg', 6),
+('The Story of Art', 'E.H. Gombrich', 'One of the best introductions to art history.', 1950, 688, 4.3, 'story_of_art.jpg', 7),
+('The Republic', 'Plato', 'Foundational philosophical text on justice and society.', -380, 416, 4.2, 'republic.jpg', 8),
+('You Don’t Know JS', 'Kyle Simpson', 'Deep dive into JavaScript mechanics.', 2015, 278, 4.5, 'ydkjs.jpg', 1),
+('Astrophysics for People in a Hurry', 'Neil deGrasse Tyson', 'A quick introduction to modern astrophysics.', 2017, 224, 4.1, 'astrophysics.jpg', 2);

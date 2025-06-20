@@ -3,14 +3,16 @@ const searchInput = document.getElementById("searchInput");
 const bookList = document.getElementById("book-list");
 const pagination = document.getElementById("pagination");
 
-searchInput.addEventListener("input", () => {
-  clearTimeout(debounceTimeout);
-  const query = searchInput.value.trim();
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    clearTimeout(debounceTimeout);
+    const query = searchInput.value.trim();
 
-  debounceTimeout = setTimeout(() => {
-    fetchBooks(query);
-  }, 300);
-});
+    debounceTimeout = setTimeout(() => {
+      fetchBooks(query);
+    }, 300);
+  });
+}
 
 function fetchBooks(query) {
   pagination.classList.add("hidden");

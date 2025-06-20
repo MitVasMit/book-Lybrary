@@ -38,6 +38,8 @@
 <script src="../assets/js/books.js"></script>
 <script src="../assets/js/search.js"></script>
 <script src="../assets/js/reset_password_spinner.js"></script>
+<script src="../assets/js/admin/admin.js"></script>
+
 
 
 </body>

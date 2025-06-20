@@ -41,9 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  scrollBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  if (scrollBtn) {
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 });
 
 function dismissFlash() {
