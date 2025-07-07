@@ -1,31 +1,25 @@
-<!--
-  Font Awesome CDN (add this to your <head> in includes/header.php if not already present):
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-papm6Q+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
--->
 <aside
   id="adminSidebar"
   class="min-h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white flex flex-col py-6 px-4 transition-all duration-300 ease-in-out"
-  style="width: 16rem;"
->
-  <!-- Header -->
+  style="width: 16rem;">
+
   <div class="flex items-center justify-between mb-4">
-    <h2 id="sidebarTitle" class="text-xl font-bold">Dashboard</h2>
+    <h2 id="sidebarTitle" class="text-xl font-bold flex items-center gap-2">
+      <i class="fas fa-gauge"></i>
+      <a href="dashboard.php" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Dashboard</a>
+    </h2>
   </div>
 
-  <!-- Button + Nav wrapper -->
   <div class="flex flex-col gap-4">
-    <!-- Toggle button (fixed position in layout) -->
     <div class="flex justify-end">
       <button
         id="toggleSidebar"
         class="p-2 rounded hover:bg-gray-100 text-gray-500 dark:text-gray-300 hover:text-blue-500 focus:outline-none text-2xl leading-none transition-transform duration-300"
-        title="Toggle sidebar"
-      >
+        title="Toggle sidebar">
         &#8592;
       </button>
     </div>
 
-    <!-- Navigation -->
     <nav class="flex flex-col space-y-2">
       <a href="books.php" class="flex items-center space-x-3 px-3 py-3 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
         <i class="fas fa-book"></i>
@@ -45,4 +39,4 @@
       </a>
     </nav>
   </div>
-  </aside>
+</aside>

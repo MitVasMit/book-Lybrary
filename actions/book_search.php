@@ -7,14 +7,12 @@ $searchQuery = $_GET['q'] ?? '';
 $results = [];
 
 if (!empty($searchQuery)) {
-    // fetch from openlibrary
     $apiUrl = 'https://openlibrary.org/search.json?title=' . urlencode($searchQuery);
     $apiResponse = file_get_contents($apiUrl);
 
     if ($apiResponse) {
         $apiData = json_decode($apiResponse, true);
 
-        // filter books where title contains searchQuery (case-insensitive)
         $filteredBooks = array_filter($apiData['docs'], function ($book) use ($searchQuery) {
             return isset($book['title']) && stripos($book['title'], $searchQuery) !== false;
         });
@@ -29,7 +27,6 @@ if (!empty($searchQuery)) {
         }
     }
 
-    // fetch from DB
     if (isset($bookModel)) {
         $localBooks = $bookModel->searchBooks($searchQuery);
 
@@ -42,7 +39,6 @@ if (!empty($searchQuery)) {
             ];
         }
     } else {
-        // Optional: fallback if $bookModel is not set
         $bookModel = new Book();
         $localBooks = $bookModel->searchBooks($searchQuery);
 

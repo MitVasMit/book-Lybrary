@@ -21,4 +21,13 @@ class Book extends DB
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function create(array $data): bool
+    {
+        $sql = "INSERT INTO books (title, author, description, published_year, pages, rating, cover_image, category_id) 
+                VALUES (:title, :author, :description, :published_year, :pages, :rating, :cover_image, :category_id)";
+        
+        $stmt = $this->instance->prepare($sql);
+        return $stmt->execute($data);
+    }
 }

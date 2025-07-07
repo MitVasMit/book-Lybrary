@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         slide.className = "swiper-slide p-4";
 
         slide.innerHTML = `
-          <div class="bg-white dark:bg-gray-700 rounded shadow p-4 flex flex-col items-center max-w-[180px] mx-auto">
+          <div class="bg-white dark:bg-gray-700 rounded shadow p-4 flex flex-col items-center max-w-[180px] mx-auto cursor-pointer hover:scale-105 transition-transform duration-300">
             <div class="w-full h-[220px] p-2 bg-white dark:bg-gray-600 rounded flex items-center justify-center">
               <img src="${cover}" alt="${
           book.title
@@ -35,6 +35,23 @@ document.addEventListener("DOMContentLoaded", () => {
 `;
 
         bestsellerList.appendChild(slide);
+        
+        // Add click event listener to make the book clickable
+        const bookCard = slide.querySelector('div');
+        bookCard.addEventListener('click', () => {
+          // Convert bestseller data format to match modal expectations
+          const bookData = {
+            title: book.title,
+            authors: [{ name: book.author_name?.[0] || "Unknown Author" }],
+            cover_id: book.cover_i,
+            key: book.key || null
+          };
+          
+          // Open the modal with the book data
+          if (typeof window.openBookModal === 'function') {
+            window.openBookModal(bookData);
+          }
+        });
       });
 
       bestsellerLoader.classList.add("hidden");

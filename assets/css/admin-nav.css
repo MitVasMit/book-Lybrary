@@ -27,7 +27,8 @@
   text-overflow: ellipsis; /* Show ellipsis if text is too long */
 }
 
-.container {
+/* Admin layout container - make it more specific */
+.admin-container {
   display: flex;
 }
 
@@ -35,7 +36,7 @@
   flex-shrink: 0;
 }
 
-main {
+.admin-main {
   flex: 1;
   transition: margin-left 0.3s ease;
 } 

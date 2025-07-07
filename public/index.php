@@ -4,6 +4,8 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 include('../includes/header.php'); ?>
 
+
+
 <?php if (!empty($_SESSION['errors']['auth'])): ?>
     <div id="flash-message" class="relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center max-w-xl mx-auto my-6 transition-opacity duration-500 ease-in-out">
         <span><?= $_SESSION['errors']['auth'];
@@ -40,20 +42,43 @@ include('../includes/header.php'); ?>
 </div>
 <section class="py-20 bg-gray-100 dark:bg-gray-800">
     <div class="container mx-auto px-4">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Our Books:</h2>
-        <div id="book-list-loader" class="flex justify-center items-center my-12 hidden">
-            <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+        <div class="flex flex-col min-h-[600px]">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Our Books:</h2>
+            <div id="book-list-loader" class="flex justify-center items-center my-12 hidden">
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+            
+            <div id="book-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 flex-1"></div>
+            <div id="pagination" class="flex justify-center items-center mt-10 mb-6"></div>
         </div>
-        <div id="book-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"></div>
-
-        <div id="pagination" class="flex justify-end items-center mt-10"></div>
     </div>
 </section>
+
+<!-- Book Modal -->
+<div class="modal-backdrop" id="bookModal">
+    <div class="book-wrapper">
+        <button id="closeBtn" class="close-button" onclick="closeBook()">×</button>
+        <div class="book" id="book">
+            <div class="page left-page">
+                <h2 id="bookTitle">Book Title</h2>
+                <p id="bookAuthor">Author Name</p>
+                <p id="bookDescription">This is the left page of the open book.</p>
+            </div>
+            <div class="page right-page">
+                <h2>Book Details</h2>
+                <p id="bookDetails">This is the right page of the open book.</p>
+            </div>
+            <div class="cover">
+                <h2 id="coverTitle">Cover</h2>
+                <p id="coverAuthor">Author</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <button id="scrollToTopBtn"
     class="fixed bottom-8 right-8 p-3 bg-blue-700 text-white rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 hover:bg-blue-800 z-50"
     aria-label="Scroll to top">
-    <!-- You can use an up arrow icon (SVG) -->
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
     </svg>
