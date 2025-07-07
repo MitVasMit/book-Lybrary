@@ -30,7 +30,6 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 if (!$userModel->emailExists($email)) {
-    // to prevent email enumeration, show success message even if no user found
     $_SESSION['success'] = 'If this email exists in our system, a reset link has been sent.';
     header('Location: ../public/forgot_password.php');
     exit;

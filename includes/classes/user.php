@@ -86,4 +86,12 @@ class User extends DB
         $stmt = $this->instance->prepare($sql);
         return $stmt->execute(['email' => $email]);
     }
+
+    public function getAllUsers()
+    {
+        $sql = "SELECT * FROM users WHERE role != 'admin' ORDER BY created_at DESC";
+        $stmt = $this->instance->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

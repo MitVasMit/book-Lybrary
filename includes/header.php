@@ -20,6 +20,8 @@ $user = $_SESSION['user'] ?? null;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-papm6Q+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Admin Navigation CSS -->
     <link rel="stylesheet" href="../assets/css/admin-nav.css" />
+    <!-- Book Modal CSS -->
+    <link rel="stylesheet" href="../assets/css/book-modal.css" />
 
 
 </head>

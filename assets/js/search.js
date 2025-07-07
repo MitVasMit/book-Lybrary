@@ -32,26 +32,41 @@ function fetchBooks(query) {
       data.forEach((book) => {
         const item = document.createElement("div");
         item.className =
-          "bg-white dark:bg-gray-700 rounded-lg shadow-md p-2 mx-auto flex flex-col items-center w-full max-w-[160px] min-h-[320px] hover:scale-105 transition duration-300 ease-in-out";
+          "bg-white dark:bg-gray-700 rounded-lg shadow-md p-2 mx-auto flex flex-col items-center w-full max-w-[160px] min-h-[320px] hover:scale-105 transition duration-300 ease-in-out cursor-pointer";
 
-        const sourceTag = `<span class="mt-2 text-xs px-2 py-1 text-blue-800 dark:text-gray-300 rounded">${book.source}</span>`;
+        item.addEventListener('click', () => {
+          console.log('Search result clicked:', book);
+          console.log('openBookModal function available:', typeof window.openBookModal);
+          
+          const bookData = {
+            title: book.title,
+            authors: [{ name: book.author }],
+            cover_id: book.cover_id,
+            key: book.key || null
+          };
+          console.log('Book data for modal:', bookData);
+          
+          if (typeof window.openBookModal === 'function') {
+            window.openBookModal(bookData);
+          } else {
+            console.error('openBookModal function is not available');
+          }
+        });
 
         if (book.cover_id) {
           item.innerHTML = `
             <img src="https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg" alt="${book.title}"
-                class="w-[120px] h-[180px] object-contain mb-4 p-2 bg-white rounded shadow" />
-            <h3 class="text-md font-semibold text-gray-900 dark:text-white text-center">${book.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300 text-center">${book.author}</p>
-            ${sourceTag}
+                class="w-[120px] h-[180px] object-contain mb-4 p-2 bg-white rounded shadow pointer-events-none" />
+            <h3 class="text-md font-semibold text-gray-900 dark:text-white text-center pointer-events-none">${book.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 text-center pointer-events-none">${book.author}</p>
           `;
         } else {
           item.innerHTML = `
-            <div class="w-full max-w-[150px] h-[200px] flex items-center justify-center bg-gray-200 dark:bg-gray-600 mb-4 rounded text-gray-500 dark:text-gray-400 italic text-center px-2">
+            <div class="w-full max-w-[150px] h-[200px] flex items-center justify-center bg-gray-200 dark:bg-gray-600 mb-4 rounded text-gray-500 dark:text-gray-400 italic text-center px-2 pointer-events-none">
               No cover available from this book.
             </div>
-            <h3 class="text-md font-semibold text-gray-900 dark:text-white text-center">${book.title}</h3>
-            <p class="text-sm text-gray-600 dark:text-gray-300 text-center">${book.author}</p>
-            ${sourceTag}
+            <h3 class="text-md font-semibold text-gray-900 dark:text-white text-center pointer-events-none">${book.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 text-center pointer-events-none">${book.author}</p>
           `;
         }
 
