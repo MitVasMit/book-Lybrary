@@ -1,3 +1,7 @@
+<!--
+  Font Awesome CDN (add this to your <head> in includes/header.php if not already present):
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-papm6Q+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+-->
 <aside
   id="adminSidebar"
   class="min-h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white flex flex-col py-6 px-4 transition-all duration-300 ease-in-out"
@@ -24,21 +28,21 @@
     <!-- Navigation -->
     <nav class="flex flex-col space-y-2">
       <a href="books.php" class="flex items-center space-x-3 px-3 py-3 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-        <span class="text-xl">📚</span>
+        <i class="fas fa-book"></i>
         <span class="sidebar-text transition-opacity duration-300">Manage Books</span>
       </a>
       <a href="categories.php" class="flex items-center space-x-3 px-3 py-3 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-        <span class="text-xl">🏷️</span>
+        <i class="fas fa-layer-group"></i>
         <span class="sidebar-text transition-opacity duration-300">Book Categories</span>
       </a>
       <a href="comments.php" class="flex items-center space-x-3 px-3 py-3 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-        <span class="text-xl">💬</span>
+        <i class="fas fa-user-lock"></i>
         <span class="sidebar-text transition-opacity duration-300">Private Comments</span>
       </a>
       <a href="reviews.php" class="flex items-center space-x-3 px-3 py-3 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-        <span class="text-xl">⭐</span>
+        <i class="fas fa-star"></i>
         <span class="sidebar-text transition-opacity duration-300">Reviews</span>
       </a>
     </nav>
   </div>
-</aside>
+  </aside>

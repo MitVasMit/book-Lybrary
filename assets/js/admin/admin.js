@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateSidebar() {
     if (isExpanded) {
-      sidebar.style.width = "16rem"; // expanded
-      sidebarTitle.style.display = "block";
+      sidebar.style.width = "16rem"; 
+      sidebarTitle.style.visibility = "visible";
+      sidebar.classList.remove('collapsed');
 
       sidebarTextItems.forEach((el) => {
         el.style.opacity = "1";
@@ -17,11 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
         el.style.transition = "opacity 0.3s ease";
       });
 
-      toggleBtn.innerHTML = "&#8592;";
-      toggleBtn.style.transform = "rotate(0deg)";
+      toggleBtn.innerHTML = "&#8592;"; 
+      toggleBtn.style.transform = "none"; 
     } else {
-      sidebar.style.width = "5rem"; // collapsed
-      sidebarTitle.style.display = "none";
+      sidebar.style.width = "5rem"; 
+      sidebarTitle.style.visibility = "hidden";
+      sidebar.classList.add('collapsed');
 
       sidebarTextItems.forEach((el) => {
         el.style.opacity = "0";
@@ -29,11 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
         el.style.transition = "opacity 0.3s ease";
       });
 
-      // toggleBtn.innerHTML = "&#8594;";
-      toggleBtn.style.transform = "rotate(180deg)";
-      toggleBtn.style.transition = ".5s";
+      toggleBtn.innerHTML = "&#8594;"; 
+      toggleBtn.style.transform = "none"; 
     }
   }
+  
   toggleBtn.addEventListener("click", () => {
     isExpanded = !isExpanded;
     updateSidebar();

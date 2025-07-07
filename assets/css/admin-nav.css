@@ -1,0 +1,41 @@
+#adminSidebar.collapsed a {
+  padding-top: 0.75rem;  /* Reduce vertical padding */
+  padding-bottom: 0.75rem;
+  justify-content: center; /* Center icon horizontally */
+  margin-bottom: 0.5rem; /* Add margin between icons when collapsed */
+}
+
+#adminSidebar.collapsed .sidebar-text {
+  display: none !important; /* Hide text completely */
+}
+
+#adminSidebar.collapsed i {
+  font-size: 1.5rem; /* Keep icon size consistent */
+  margin: 0 auto;
+}
+
+/* Ensure text appears in one row when expanded */
+#adminSidebar a {
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis if text is too long */
+}
+
+#adminSidebar .sidebar-text {
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis if text is too long */
+}
+
+.container {
+  display: flex;
+}
+
+#adminSidebar {
+  flex-shrink: 0;
+}
+
+main {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+} 

@@ -16,6 +16,10 @@ $user = $_SESSION['user'] ?? null;
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <!-- swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-papm6Q+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Admin Navigation CSS -->
+    <link rel="stylesheet" href="../assets/css/admin-nav.css" />
 
 
 </head>
