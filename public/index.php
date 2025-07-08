@@ -6,7 +6,8 @@ include('../includes/header.php'); ?>
 
 
 
-<?php if (!empty($_SESSION['errors']['auth'])): ?>
+<?php if (!empty($_SESSION['errors']['auth'])): ?>hi
+    hi
     <div id="flash-message" class="relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center max-w-xl mx-auto my-6 transition-opacity duration-500 ease-in-out">
         <span><?= $_SESSION['errors']['auth'];
                 unset($_SESSION['errors']['auth']); ?></span>

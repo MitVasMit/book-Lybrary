@@ -34,7 +34,7 @@ if (!empty($searchQuery)) {
             $results[] = [
                 'title'    => $book['title'],
                 'author'   => $book['author'],
-                'cover_id' => $book['cover_id'] ?? null,
+                'cover_image' => $book['cover_image'] ?? null,
                 'source'   => 'Local DB'
             ];
         }
@@ -46,7 +46,7 @@ if (!empty($searchQuery)) {
             $results[] = [
                 'title'    => $book['title'],
                 'author'   => $book['author'],
-                'cover_id' => $book['cover_id'] ?? null,
+                'cover_image' => $book['cover_image'] ?? null,
                 'source'   => 'Local DB'
             ];
         }

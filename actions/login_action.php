@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors['login'] = "Invalid email or password.";
         } else {
             $_SESSION['user'] = $user;
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['role'] = $user['role'];
 
             if ($user['role'] === 'admin') {
                 header('Location: ../admin/dashboard.php');

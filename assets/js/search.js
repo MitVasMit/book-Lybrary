@@ -42,6 +42,7 @@ function fetchBooks(query) {
             title: book.title,
             authors: [{ name: book.author }],
             cover_id: book.cover_id,
+            cover_image: book.cover_image,
             key: book.key || null
           };
           console.log('Book data for modal:', bookData);
@@ -53,7 +54,14 @@ function fetchBooks(query) {
           }
         });
 
-        if (book.cover_id) {
+        if (book.cover_image) {
+          item.innerHTML = `
+            <img src="/book-Library/uploads/${book.cover_image}" alt="${book.title}"
+                class="w-[120px] h-[180px] object-contain mb-4 p-2 bg-white rounded shadow pointer-events-none" />
+            <h3 class="text-md font-semibold text-gray-900 dark:text-white text-center pointer-events-none">${book.title}</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 text-center pointer-events-none">${book.author}</p>
+          `;
+        } else if (book.cover_id) {
           item.innerHTML = `
             <img src="https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg" alt="${book.title}"
                 class="w-[120px] h-[180px] object-contain mb-4 p-2 bg-white rounded shadow pointer-events-none" />
