@@ -185,10 +185,14 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.addEventListener('click', handleModalClick);
     
     // Load cover image immediately (use medium size that's likely already cached)
-    if (book.cover_id) {
+    if (book.cover_image) {
+      const coverImageUrl = `/book-Library/uploads/${book.cover_image}`;
+      coverElement.style.background = `linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.08)), url(${coverImageUrl})`;
+      coverElement.style.backgroundSize = 'cover';
+      coverElement.style.backgroundPosition = 'center';
+      coverElement.style.backgroundRepeat = 'no-repeat';
+    } else if (book.cover_id) {
       const coverImageUrl = `https://covers.openlibrary.org/b/id/${book.cover_id}-M.jpg`;
-      
-      // Set the cover image immediately (it should be cached from the book list)
       coverElement.style.background = `linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.08)), url(${coverImageUrl})`;
       coverElement.style.backgroundSize = 'cover';
       coverElement.style.backgroundPosition = 'center';

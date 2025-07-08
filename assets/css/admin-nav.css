@@ -1,5 +1,5 @@
 #adminSidebar.collapsed a {
-  padding-top: 0.75rem;  /* Reduce vertical padding */
+  padding-top: 0.75rem; /* Reduce vertical padding */
   padding-bottom: 0.75rem;
   justify-content: center; /* Center icon horizontally */
   margin-bottom: 0.5rem; /* Add margin between icons when collapsed */
@@ -39,4 +39,4 @@
 .admin-main {
   flex: 1;
   transition: margin-left 0.3s ease;
-} 
+}

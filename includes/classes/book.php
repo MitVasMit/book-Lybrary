@@ -4,7 +4,7 @@ class Book extends DB
 {
     public function searchBooks(string $query): array
     {
-        $stmt = $this->instance->prepare("SELECT title, author FROM books WHERE title LIKE :search");
+        $stmt = $this->instance->prepare("SELECT title, author, cover_image FROM books WHERE title LIKE :search AND deleted = 0");
         $stmt->execute(['search' => '%' . $query . '%']);
         return $stmt->fetchAll();
     }
@@ -29,5 +29,17 @@ class Book extends DB
         
         $stmt = $this->instance->prepare($sql);
         return $stmt->execute($data);
+    }
+
+    public function softDelete($id): bool
+    {
+        $stmt = $this->instance->prepare('UPDATE books SET deleted = 1 WHERE id = :id');
+        return $stmt->execute(['id' => $id]);
+    }
+
+    public function restoreBook($id): bool
+    {
+        $stmt = $this->instance->prepare('UPDATE books SET deleted = 0 WHERE id = :id');
+        return $stmt->execute(['id' => $id]);
     }
 }
